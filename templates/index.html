@@ -6,24 +6,27 @@
 
 
 {% block content %}
-<p class="main-title">Does the title or image match the story?</p>
-<h2>Daily News</h2>
+<h2>Breaking News</h2>
 <section class="daily-news">
     <article class="article">
+        <div class="source">
+            <a href="https://www.nytimes.com/live/2024/09/16/us/trump-shooting-news"><small>New York
+                    Times</small></a>
+        </div>
         <div class="article-area">
             <div class="article-image">
                 <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="breaking news">
             </div>
             <div class="article-content">
-                <h3 class="article-title"><a href="news/index.html">Breaking News</a></h3>
+                <h3 class="article-title"><a href="{{ url_for('show_news', slug='hello-world-machine') }}">Hello World Machine</a></h3>
                 <p>
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
                 </p>
             </div>
         </div>
         <div class="source-vote">
-            <div class="source">
+            <div class="tags">
                 <a href="https://www.nytimes.com/live/2024/09/16/us/trump-shooting-news"><small>New York
                         Times</small></a>
             </div>
@@ -50,6 +53,10 @@
         </div>
     </article>
     <article class="article">
+        <div class="source">
+            <a
+                href="https://www.nytimes.com/live/2024/09/16/us/trump-shooting-news"><small>MSNBC</small></a>
+        </div>
         <div class="article-area">
             <div class="article-image">
                 <img src="https://images.unsplash.com/photo-1724582586495-d050726cf354?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -63,9 +70,8 @@
             </div>
         </div>
         <div class="source-vote">
-            <div class="source">
-                <a
-                    href="https://www.nytimes.com/live/2024/09/16/us/trump-shooting-news"><small>MSNBC</small></a>
+            <div class="tags">
+                
             </div>
             <div class="vote">
                 <span class="upvote">
@@ -90,6 +96,11 @@
         </div>
     </article>
     <article class="article">
+        <div class="source">
+            <a
+                href="https://www.nytimes.com/live/2024/09/16/us/trump-shooting-news"><small>Al Jazeera</small>
+            </a>
+        </div>
         <div class="article-area">
             <div class="article-image">
                 <img src="https://images.unsplash.com/photo-1726090102306-49df28adaf0f?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -104,9 +115,8 @@
             </div>
         </div>
         <div class="source-vote">
-            <div class="source">
-                <a
-                    href="https://www.nytimes.com/live/2024/09/16/us/trump-shooting-news"><small>Al Jazeera</small></a>
+            <div class="tags">
+                
             </div>
             <div class="vote">
                 <span class="upvote">
@@ -131,6 +141,10 @@
         </div>
     </article>
     <article class="article">
+        <div class="source">
+            <a
+                href="https://www.nytimes.com/live/2024/09/16/us/trump-shooting-news"><small>Al Jazeera</small></a>
+        </div>
         <div class="article-area">
             <div class="article-image">
                 <img src="https://images.unsplash.com/photo-1726090102306-49df28adaf0f?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -145,9 +159,8 @@
             </div>
         </div>
         <div class="source-vote">
-            <div class="source">
-                <a
-                    href="https://www.nytimes.com/live/2024/09/16/us/trump-shooting-news"><small>Al Jazeera</small></a>
+            <div class="tags">
+                
             </div>
             <div class="vote">
                 <span class="upvote">
@@ -172,6 +185,10 @@
         </div>
     </article>
     <article class="article">
+        <div class="source">
+            <a href="https://www.nytimes.com/live/2024/09/16/us/trump-shooting-news"><small>New York
+                    Times</small></a>
+        </div>
         <div class="article-area">
             <div class="article-image">
                 <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -185,9 +202,8 @@
             </div>
         </div>
         <div class="source-vote">
-            <div class="source">
-                <a href="https://www.nytimes.com/live/2024/09/16/us/trump-shooting-news"><small>New York
-                        Times</small></a>
+            <div class="tags">
+                
             </div>
             <div class="vote">
                 <span class="upvote">

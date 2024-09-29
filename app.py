@@ -14,5 +14,9 @@ def register():
 def login():
 	return render_template('auth/login.html')
 
+@app.route('/news/breaking-news/<slug>')
+def show_news(slug):
+	return render_template('news/index.html')
+
 if __name__ == "__main__":
 	app.run(debug=True)

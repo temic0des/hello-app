@@ -1,0 +1,44 @@
+[
+    {
+        "source": {
+            "id": "wired",
+            "name": "Wired"
+        },
+        "author": "Joel Khalili",
+        "title": "The World’s Biggest Bitcoin Mine Is Rattling This Texas Oil Town",
+        "description": "A cash-strapped city in rural Texas will soon be home to the world’s largest bitcoin mine. Local protesters are “raising hell.”",
+        "url": "https://www.wired.com/story/the-worlds-biggest-bitcoin-mine-is-rattling-this-texas-oil-town/",
+        "urlToImage": "https://media.wired.com/photos/66c5ecc5724cee849e3104da/191:100/w_1280,c_limit/WIRED_BTC_EC_B-Elena-Chudoba.jpg",
+        "publishedAt": "2024-09-11T10:00:00Z",
+        "content": "The previous October, Sawicky organized a weeklong protest alongside environmental activist group Greenpeace and brandished various anti-bitcoin signs at anyone who entered the Riot facility. Only a …",
+        "type": "breaking"
+    },
+    {
+        "source": {
+            "id": null,
+            "name": "CNET"
+        },
+        "author": "Samantha Kelly",
+        "title": "PayPal to Allow Businesses Buy and Sell Crypto",
+        "description": "A cash-strapped city in rural Texas will soon be home to the world’s largest bitcoin mine. Local protesters are “raising hell.”",
+        "url": "https://www.cnet.com/personal-finance/crypto/paypal-to-allow-businesses-buy-and-sell-crypto/",
+        "urlToImage": "https://www.cnet.com/a/img/resize/2b2ba45973ffae7baacd4449b399bd35435e4fa0/hub/2022/04/22/d7acb748-e7bd-4553-ae44-2f893ccb87ba/paypal-logo-2022-659.jpg?auto=webp&fit=crop&height=675&width=1200",
+        "publishedAt": "2024-09-26T15:12:00Z",
+        "content": "It's about to get easier for US merchants to use cryptocurrency for payments. PayPal is launching a new service to allow the businesses that use its platform to buy, hold and sell crypto. \r\nAlthough",
+        "type": "breaking"
+    },
+    {
+        "source": {
+            "id": "politico",
+            "name": "Politico"
+        },
+        "author": "POLITICO",
+        "title": "Maya Rudolph as Harris and Dana Carvey as Biden open 50th season of ‘Saturday Night Live’ - POLITICO",
+        "description": null,
+        "url": "https://www.politico.com/news/2024/09/29/maya-rudolph-as-harris-and-dana-carvey-as-biden-open-50th-season-of-saturday-night-live-00181564",
+        "urlToImage": null,
+        "publishedAt": "2024-09-29T11:35:33Z",
+        "content": null,
+        "type": "top"
+    }
+]

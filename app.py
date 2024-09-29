@@ -1,10 +1,20 @@
+import json
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
+file_path = "data.json"
+
+def load_data():
+	articles = None
+	with open(file_path, 'r') as data:
+		articles = json.loads(data.read())
+	return articles
+
 @app.route("/")
 def index():
-	return render_template('index.html')
+	articles = load_data()
+	return render_template('index.html', context=articles)
 
 @app.route("/register")
 def register():

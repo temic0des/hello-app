@@ -59,10 +59,10 @@ p {
 }
 
 article {
-    border: 1px solid #777;
+    border-bottom: 1px solid #777;
     padding: 1rem;
     border-radius: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 label {
@@ -145,8 +145,8 @@ input[type="email"], input[type="password"] {
 }
 
 .article-image > img {
-    height: 80px;
-    width: 100%;
+    height: 100px;
+    width: 120px;
 }
 
 .article-area {
@@ -190,6 +190,10 @@ input[type="email"], input[type="password"] {
     gap: .5rem;
 }
 
+.logo-title {
+    font-size: 1.375rem;
+}
+
 .main-login-register {
     height: 100dvh;
     display: flex;
@@ -217,12 +221,18 @@ footer {
     padding: 1em 0;
 }
 
+.news-section {
+    background: #200122;
+    background: linear-gradient(to bottom, #200122, #6f0000);
+    border-radius: 10px;
+}
+
+.news-section > h2 {
+    text-align: center;
+    border-bottom: 1px;
+}
+
 @media screen and (min-width: 540px) {
-    .daily-news {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
 
     .search-news {
         width: 70%;
@@ -249,16 +259,27 @@ footer {
 }
 
 @media screen and (min-width: 1024px) {
-    .daily-news {
+
+    .news {
         display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 3px;
+    }
+
+    .news-section {
+        padding: 1rem;
+        margin: 1rem;
     }
 
     .search-news {
         width: 50%;
         margin: auto;
+    }
+
+    .breaking-news {
+        flex: 1;
+    }
+
+    .top-news {
+        flex: 1;
     }
 
     .article {

@@ -23,7 +23,7 @@
                         <div class="article-content">
                             <h3 class="article-title"><a href="{{ url_for('show_news', slug='hello-world-machine') }}">{{ article.title }}</a></h3>
                             <p>
-                                {{ article.description }}
+                                {{ article.description|truncate(100) }}
                             </p>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="date-published">
-                        <small>{{ article.publishedAt }}</small>
+                        <small>{{ article.publishedAt|humanize_date }}</small>
                     </div>
                 </article>
         {% else %}
@@ -69,13 +69,19 @@
             </div>
             <div class="article-area">
                 <div class="article-image">
-                    <img src="{{ article.urlToImage }}"
-                        alt="{{ article.title }}">
+                    {% if article.urlToImage %}
+                        <img src="{{ article.urlToImage }}"
+                            alt="{{ article.title }}">
+                    {% else %}
+                        <img src="https://images.unsplash.com/photo-1470790376778-a9fbc86d70e2?q=80&w=2804&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="{{ article.title }}" />
+                    {% endif %}
                 </div>
                 <div class="article-content">
                     <h3 class="article-title"><a href="{{ url_for('show_news', slug='hello-world-machine') }}">{{ article.title }}</a></h3>
                     <p>
-                        {{ article.description }}
+                        {% if article.description %}
+                            {{ article.description|truncate(100) }}
+                        {% endif %}
                     </p>
                 </div>
             </div>
@@ -102,7 +108,7 @@
                 </div>
             </div>
             <div class="date-published">
-                <small>{{ article.publishedAt }}</small>
+                <small>{{ article.publishedAt|humanize_date }}</small>
             </div>
         </article>
     {% else %}

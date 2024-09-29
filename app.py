@@ -1,7 +1,14 @@
-import json
+import json, pendulum
 from flask import Flask, render_template
 
 app = Flask(__name__)
+
+@app.template_filter("humanize")
+def humanize_date(date_string):
+	date = pendulum.parse(date_string)
+	return date.diff_for_humans()
+
+app.jinja_env.filters['humanize_date'] = humanize_date
 
 file_path = "data.json"
 

@@ -8,10 +8,10 @@
 {% block content %}
 <section>
     <article class="article-single">
+        <small>{{ context.publishedAt|humanize_date }}</small>
         <div class="source-vote">
             <div class="source">
-                <a href="https://www.nytimes.com/live/2024/09/16/us/trump-shooting-news"><small>New York
-                        Times</small></a>
+                <a href="{{ context.url }}" target="_blank"><small>{{ context.source.name }}</small></a>
             </div>
             <div class="vote">
                 <span class="upvote">
@@ -36,25 +36,17 @@
         </div>
         <div class="article-single-area">
             <div class="article-single-image">
-                <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="breaking news">
+                {% if context.urlToImage %}
+                        <img src="{{ context.urlToImage }}"
+                            alt="{{ context.title }}">
+                    {% else %}
+                        <img src="https://images.unsplash.com/photo-1470790376778-a9fbc86d70e2?q=80&w=2804&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="{{ context.title }}" />
+                    {% endif %}
             </div>
             <div class="article-single-content">
-                <h3 class="article-title"><a href="news/index.html">Breaking News</a></h3>
+                <h3 class="article-title"><a href="news/index.html">{{ context.title }}</a></h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-                </p>
-                <p>
-                    Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-                <p>
-                    Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                </p>
-                <p>
-                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
+                    {{ context.description }}
                 </p>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import json, pendulum
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
 from slugify import slugify
 
 app = Flask(__name__)
@@ -18,7 +18,7 @@ app.jinja_env.filters['slugify'] = slugify_text
 
 file_path = "data.json"
 
-def load_data():
+def load_data() -> list[dict]:
 	articles = None
 	with open(file_path, 'r') as data:
 		articles = json.loads(data.read())
@@ -37,9 +37,13 @@ def register():
 def login():
 	return render_template('auth/login.html')
 
-@app.route('/articles/breaking-articles/<slug>')
-def show_article(slug):
-	return render_template('articles/index.html')
+@app.route('/articles/<article_type>-articles/<slug>')
+def show_article(slug, article_type):
+	articles = load_data()
+	context = [article for article in articles if slugify(article.get('title')) == slug]
+	if len(context) < 1:
+		abort(404)
+	return render_template('articles/index.html', context=context[0])
 
 if __name__ == "__main__":
 	app.run(debug=True)

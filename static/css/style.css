@@ -221,6 +221,7 @@ footer {
     background: #111;
     color: #fff;
     padding: 1em 0;
+    margin-bottom: 1em;
 }
 
 .news-section {
@@ -306,5 +307,10 @@ footer {
     .nav-right > .menu {
         display: flex;
         gap: 1rem;
+    }
+
+    .main-login-register {
+        width: 60%;
+        margin: auto;
     }
 }

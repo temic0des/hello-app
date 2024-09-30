@@ -21,7 +21,7 @@
                                 alt="{{ article.title }}">
                         </div>
                         <div class="article-content">
-                            <h3 class="article-title"><a href="{{ url_for('show_news', slug='hello-world-machine') }}">{{ article.title }}</a></h3>
+                            <h3 class="article-title"><a href="{{ url_for('show_article', slug=article.title|slugify) }}">{{ article.title }}</a></h3>
                             <p>
                                 {{ article.description|truncate(100) }}
                             </p>
@@ -77,7 +77,7 @@
                     {% endif %}
                 </div>
                 <div class="article-content">
-                    <h3 class="article-title"><a href="{{ url_for('show_news', slug='hello-world-machine') }}">{{ article.title }}</a></h3>
+                    <h3 class="article-title"><a href="{{ url_for('show_article', slug=article.title|slugify) }}">{{ article.title }}</a></h3>
                     <p>
                         {% if article.description %}
                             {{ article.description|truncate(100) }}

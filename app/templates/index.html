@@ -10,15 +10,19 @@
 <section class="breaking-news news-section">
     <h2>Breaking Articles</h2>
     {% if context %}
-        {% for article in context[:5]|sort(attribute="publishedAt", reverse=True) if article.type == "breaking" %}
+        {% for article in context %}
                 <article class="article">
                     <div class="source">
-                        <a href="{{ article.url }}" target="_blank"><small>{{ article.source.name }}</small></a>
+                        
                     </div>
                     <div class="article-area">
                         <div class="article-image">
-                            <img src="{{ article.urlToImage }}"
-                                alt="{{ article.title }}">
+                            {% if article.image_url %}
+                        <img src="{{ article.image_url }}"
+                            alt="{{ article.title }}">
+                    {% else %}
+                        <img src="https://images.unsplash.com/photo-1470790376778-a9fbc86d70e2?q=80&w=2804&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="{{ article.title }}" />
+                    {% endif %}
                         </div>
                         <div class="article-content">
                             <h3 class="article-title"><a href="{{ url_for('show_article', slug=article.title|slugify, article_type=article.type) }}">{{ article.title }}</a></h3>
@@ -50,7 +54,7 @@
                         </div>
                     </div>
                     <div class="date-published">
-                        <small>{{ article.publishedAt|humanize_date }}</small>
+                        
                     </div>
                 </article>
         {% else %}
@@ -62,15 +66,15 @@
 </section>
 <section class="top-news news-section">
     <h2>Top Articles</h2>
-    {% for article in context[:5]|sort(attribute="publishedAt", reverse=True) if article.type == "top" %}
+    {% for article in context %}
         <article class="article">
             <div class="source">
-                <a href="{{ article.url }}" target="_blank"><small>{{ article.source.name }}</small></a>
+                
             </div>
             <div class="article-area">
                 <div class="article-image">
-                    {% if article.urlToImage %}
-                        <img src="{{ article.urlToImage }}"
+                    {% if article.image_url %}
+                        <img src="{{ article.image_url }}"
                             alt="{{ article.title }}">
                     {% else %}
                         <img src="https://images.unsplash.com/photo-1470790376778-a9fbc86d70e2?q=80&w=2804&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="{{ article.title }}" />
@@ -108,7 +112,7 @@
                 </div>
             </div>
             <div class="date-published">
-                <small>{{ article.publishedAt|humanize_date }}</small>
+                
             </div>
         </article>
     {% else %}

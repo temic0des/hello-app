@@ -1,0 +1,11 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block dashboard_title %}Dashboard{% endblock %}
+
+{% block dashboard_header_title %}Dashboard{% endblock %}
+
+{% block dashboard_content %}
+    <div class="dashboard-content">
+        <a href="{{ url_for('create_article') }}">Create Article</a>
+    </div>
+{% endblock %}

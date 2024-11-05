@@ -33,6 +33,10 @@ span > svg {
     fill: #f1f1f1;
 }
 
+.error {
+    color: rgb(240, 76, 76);
+}
+
 a {
     text-decoration: none;
     color: #f1f1f1;
@@ -65,18 +69,38 @@ article {
     margin-bottom: 5px;
 }
 
+form {
+    margin: auto;
+}
+
+.dashboard-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 label {
     display: block;
 }
 
 input[type="text"] {
+    width: 90%;
+    margin: auto;
     padding: .6rem .3rem;
     border-radius: 20px;
     border: 1px solid #777;
 }
 
+textarea {
+    width: 90%;
+    margin: auto;
+    border-radius: 10px;
+    height: 200px;
+}
+
 input[type="email"], input[type="password"] {
     width: 90%;
+    margin: auto;
     padding: 1em;
     border-radius: 10px;
     border: 1px solid #ccc;
@@ -196,7 +220,7 @@ input[type="email"], input[type="password"] {
     font-size: 1.375rem;
 }
 
-.main-login-register {
+.main-login-register, .main-dashboard {
     height: 100dvh;
     display: flex;
     flex-direction: column;
@@ -206,6 +230,7 @@ input[type="email"], input[type="password"] {
 
 .form-group {
     width: 100%;
+    margin: 1rem 0;
 }
 
 .search-news {

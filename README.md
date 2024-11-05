@@ -16,3 +16,42 @@ Hello App is a news review app that allows users verify that the title or image 
 - User Authentication
 - Comment Section and Discussion
 - Bookmarks
+
+Running the Project
+
+- Create a virtual environment
+
+```
+virtualenv -p python3 venv
+```
+
+- Install the packages in the requirements.txt file
+
+```
+pip install -r requirements.txt
+```
+
+- Add a .env file with a SECRET_KEY for the forms
+
+```
+SECRET_KEY='...'
+```
+
+- Run the app
+```
+python app.py
+```
+
+### To perform a database migration
+
+```
+flask db init
+```
+
+```
+flask db migrate -m "message"
+```
+
+```
+flask db upgrade
+```

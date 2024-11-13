@@ -1,8 +1,8 @@
-"""initial migration
+"""user, article, article type table
 
-Revision ID: 1450a71b10bd
+Revision ID: 691a98584cc5
 Revises: 
-Create Date: 2024-11-05 15:34:26.642550
+Create Date: 2024-11-14 00:54:55.503862
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1450a71b10bd'
+revision = '691a98584cc5'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,7 +30,7 @@ def upgrade():
     sa.Column('id', sa.String(), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('password', sa.String(length=256), nullable=True),
-    sa.Column('date_created', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
+    sa.Column('date_created', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     with op.batch_alter_table('users', schema=None) as batch_op:
@@ -40,10 +40,10 @@ def upgrade():
     sa.Column('id', sa.String(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('description', sa.Text(), nullable=False),
-    sa.Column('image_url', sa.String(length=255), nullable=False),
+    sa.Column('image_url', sa.String(length=255), nullable=True),
     sa.Column('is_published', sa.Boolean(), nullable=False),
-    sa.Column('date_published', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
-    sa.Column('date_updated', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
+    sa.Column('date_published', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
+    sa.Column('date_updated', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.Column('user_id', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')

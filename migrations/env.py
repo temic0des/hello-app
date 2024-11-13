@@ -1,6 +1,6 @@
-import logging
 from app.models.user import User
 from app.models.article import Article, ArticleType
+import logging
 from logging.config import fileConfig
 
 from flask import current_app

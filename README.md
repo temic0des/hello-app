@@ -22,7 +22,6 @@ Hello App is a news review app that allows users verify that the title or image 
 
 - HTML
 - CSS
-- JavaScript
 - Flask
 - Sqlite3
 

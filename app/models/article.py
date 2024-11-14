@@ -1,31 +1,63 @@
+import enum
+from typing import Literal
 from app import db
-from uuid import UUID, uuid4
+from uuid import uuid4
 from sqlalchemy.sql import func
 from datetime import datetime
 import sqlalchemy.orm as so
-from sqlalchemy import Boolean, Column, DateTime, ForeignKey, String, Text
+from sqlalchemy import Boolean, Column, DateTime, Enum, ForeignKey, String, Table, Text
 
-class ArticleType(db.Model):
-    __tablename__ = 'article_types'
+ArticleType = Literal["normal", "breaking", "top"]
+
+class Tag(db.Model):
+    __tablename__ = "tags"
     id = Column(String, primary_key=True, default=str(uuid4()))
     name: so.Mapped[str] = so.mapped_column(String(255), unique=True, index=True)
 
     def __repr__(self) -> str:
-        return f'<Article type {self.name}>'
+        return f"<Article type {self.name}>"
 
 
 class Article(db.Model):
-    __tablename__ = 'articles'
+    __tablename__ = "articles"
     id = Column(String, primary_key=True, default=str(uuid4()))
-    title: so.Mapped[str] = so.mapped_column(String(255), unique=True, index=True, nullable=False)
+    title: so.Mapped[str] = so.mapped_column(
+        String(255), unique=True, index=True, nullable=False
+    )
     description: so.Mapped[str] = so.mapped_column(Text, nullable=False)
     image_url: so.Mapped[str] = so.mapped_column(String(255), nullable=True)
     is_published: so.Mapped[bool] = so.mapped_column(Boolean, default=False)
-    date_published: so.Mapped[datetime] = so.mapped_column(DateTime(timezone=True), server_default=func.now())
-    date_updated: so.Mapped[datetime] = so.mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
-    user_id: so.Mapped[str] = so.mapped_column(ForeignKey('users.id'), index=True)
-    author = so.relationship('User', back_populates='articles')
-    
+    article_type: so.Mapped[ArticleType] = so.mapped_column(
+        Enum("normal", "breaking", "top", name="article_type_enum"),
+        default="normal",
+        server_default="normal"
+    )
+    date_published: so.Mapped[datetime] = so.mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+    date_updated: so.Mapped[datetime] = so.mapped_column(
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
+    )
+    source_id: so.Mapped[str] = so.mapped_column(ForeignKey("article_sources.id"), index=True)
+    source = so.relationship("ArticleSource", back_populates="sources")
+    user_id: so.Mapped[str] = so.mapped_column(ForeignKey("users.id"), index=True)
+    author = so.relationship("User", back_populates="articles")
+    tags: so.WriteOnlyMapped[Tag] = so.relationship(
+        back_populates='author')
 
     def __repr__(self) -> str:
-        return f'<Article {self.title}>'
+        return f"<Article {self.title}>"
+    
+article_tag = Table('article_tag', 
+                    db.metadata,
+                       Column('article_id', String, ForeignKey('articles.id'), primary_key=True),
+                    Column('tag_id', String, ForeignKey('tags.id'), primary_key=True))
+
+class ArticleSource(db.Model):
+
+    __tablename__ = "article_sources"
+    id = Column(String, primary_key=True, default=str(uuid4()))
+    name: so.Mapped[str] = so.mapped_column(String(255), unique=True)
+    link: so.Mapped[str] = so.mapped_column(String, nullable=True)
+    sources: so.WriteOnlyMapped[Article] = so.relationship(secondary=article_tag,
+        backref='articles')

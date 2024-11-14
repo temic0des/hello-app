@@ -1,5 +1,5 @@
 from app.models.user import User
-from app.models.article import Article, ArticleType
+from app.models.article import Article, Tag, ArticleSource
 import logging
 from logging.config import fileConfig
 

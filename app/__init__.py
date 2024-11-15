@@ -19,4 +19,6 @@ migrate.init_app(app, db)
 flask_uuid = FlaskUUID()
 flask_uuid.init_app(app=app)
 
+
 from app import routes, models
+

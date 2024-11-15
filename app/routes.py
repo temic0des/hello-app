@@ -126,3 +126,10 @@ def edit_article(slug: str):
 		return redirect(url_for('dashboard'))
 	return render_template('dashboard/edit_article.html', form=edit_form)
 	
+
+@app.route('/articles/delete/<slug>', methods=['POST'])
+def delete_article(slug: str):
+	article = Article.query.filter(Article.slug == slug).first_or_404()
+	db.session.delete(article)
+	db.session.commit()
+	return redirect(url_for('dashboard'))

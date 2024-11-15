@@ -47,7 +47,7 @@ class Article(db.Model):
     description: so.Mapped[str] = so.mapped_column(Text, nullable=False)
     image_url: so.Mapped[str] = so.mapped_column(String(255), nullable=True)
     is_published: so.Mapped[bool] = so.mapped_column(Boolean, default=False)
-    article_type: so.Mapped[ArticleType] = so.mapped_column(
+    article_type: so.Mapped[str] = so.mapped_column(
         Enum("normal", "breaking", "top", name="article_type"),
         default="normal",
     )

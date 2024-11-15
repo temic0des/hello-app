@@ -50,7 +50,7 @@ class Article(db.Model):
     article_type: so.Mapped[ArticleType] = so.mapped_column(
         Enum("normal", "breaking", "top", name="article_type"),
         default="normal",
-        server_default="normal",
+        default="normal",
     )
     date_published: so.Mapped[datetime] = so.mapped_column(
         DateTime(timezone=True), server_default=func.now()

@@ -23,7 +23,7 @@ Hello App is a news review app that allows users verify that the title or image 
 - HTML
 - CSS
 - Flask
-- Sqlite3
+- Postgresql
 
 Running the Project
 
@@ -45,6 +45,12 @@ pip install -r requirements.txt
 SECRET_KEY='...'
 ```
 
+- Add an SQLALCHEMY_DATABASE_URI for the postgresql database configuration to the env file
+
+```
+SQLALCHEMY_DATABASE_URI='...'
+```
+
 - Run the app
 ```
 python app.py
@@ -63,3 +69,7 @@ flask db migrate -m "message"
 ```
 flask db upgrade
 ```
+
+NOTE:
+
+- For the first time initialization of the db migrations, import the models to the env.py file to be able to migrate and subsequently upgrade.

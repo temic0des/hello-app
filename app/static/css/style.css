@@ -15,6 +15,18 @@ p {
     padding: 1em 0;
 }
 
+table, tr, td, th {
+    border: 1px solid #fff;
+}
+
+td {
+    padding: 2rem 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
 body {
     background: #200122;
     background: linear-gradient(to bottom, #6f0000, #200122);
@@ -83,7 +95,7 @@ label {
     display: block;
 }
 
-input[type="text"] {
+input[type="text"], select {
     width: 90%;
     margin: auto;
     padding: .6rem .3rem;

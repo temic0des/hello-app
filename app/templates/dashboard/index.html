@@ -6,6 +6,31 @@
 
 {% block dashboard_content %}
     <div class="dashboard-content">
-        <a href="{{ url_for('create_article') }}">Create Article</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Article Type</th>
+                    <th>Date Published</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if context %}
+                    {% for article in context %}
+                    <tr>
+                        <td>{{ article.title }}</td>
+                        <td>{{ article.description }}</td>
+                        <td>{{ article.article_type }}</td>
+                        <td>{{ article.date_published.strftime('%Y-%m-%d %H:%M:%S')|humanize_date}}</td>
+                        <td>{{ article.author.email }}</td>
+                        <td><a href="{{ url_for('edit_article', slug=article.slug) }}">Edit</a></td>
+                        <td><a href="">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

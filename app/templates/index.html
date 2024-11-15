@@ -10,7 +10,7 @@
 <section class="breaking-news news-section">
     <h2>Breaking Articles</h2>
     {% if context %}
-        {% for article in context %}
+        {% for article in context if article.article_type == "breaking" %}
                 <article class="article">
                     <div class="source">
                         
@@ -25,7 +25,7 @@
                     {% endif %}
                         </div>
                         <div class="article-content">
-                            <h3 class="article-title"><a href="{{ url_for('show_article', slug=article.title|slugify, article_type=article.type) }}">{{ article.title }}</a></h3>
+                            <h3 class="article-title"><a href="{{ url_for('show_article', slug=article.title|slugify, article_type=article.article_type) }}">{{ article.title }}</a></h3>
                             <p>
                                 {{ article.description|truncate(100) }}
                             </p>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="date-published">
-                        
+                        <small>{{ article.date_published.strftime('%Y-%m-%d %H:%M:%S')|humanize_date }}</small>
                     </div>
                 </article>
         {% else %}
@@ -66,7 +66,7 @@
 </section>
 <section class="top-news news-section">
     <h2>Top Articles</h2>
-    {% for article in context %}
+    {% for article in context if article.article_type == "top" %}
         <article class="article">
             <div class="source">
                 
@@ -81,7 +81,7 @@
                     {% endif %}
                 </div>
                 <div class="article-content">
-                    <h3 class="article-title"><a href="{{ url_for('show_article', slug=article.title|slugify, article_type=article.type) }}">{{ article.title }}</a></h3>
+                    <h3 class="article-title"><a href="{{ url_for('show_article', slug=article.title|slugify, article_type=article.article_type) }}">{{ article.title }}</a></h3>
                     <p>
                         {% if article.description %}
                             {{ article.description|truncate(100) }}
@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div class="date-published">
-                
+                <small>{{ article.date_published.strftime('%Y-%m-%d %H:%M:%S')|humanize_date }}</small>
             </div>
         </article>
     {% else %}

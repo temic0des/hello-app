@@ -12,14 +12,10 @@
         </span>
         <span class="menu">
             <li><a href="/">Home</a></li>
-            <li><a href="#">Leaderboard</a></li>
-            {% if current_user.is_anonymous %}
-                <li><a href="{{ url_for('login') }}">Login</a></li>
-                <li class="register"><a href="{{ url_for('register') }}">Register</a></li>
-            {% else %}
-                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
-            {% endif %}
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('create_article') }}">Create Article</a></li>
+            <li><a href="{{ url_for('create_article') }}">Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </span>
     </ul>
 </nav>

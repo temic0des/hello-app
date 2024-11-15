@@ -7,13 +7,14 @@
     <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/style.css') }}>
 </head>
 <body class="dm-sans-regular">
+    {% include "components/dashboard-header.html" %}
     <main class="main-dashboard">
         <h2>{% block dashboard_header_title %}{% endblock %}</h2>
         <div class="container">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
-                        <span>{{ message }}</span>
+                        <span class="text-center">{{ message }}</span>
                     {% endfor %}
                 {% endif %}
             {% endwith %}

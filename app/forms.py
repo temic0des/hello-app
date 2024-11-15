@@ -1,11 +1,17 @@
 from flask_wtf import FlaskForm
 from app import db
 from sqlalchemy import select
-from wtforms import BooleanField, EmailField, StringField, TextAreaField, \
+from wtforms import BooleanField, EmailField, SelectField, StringField, TextAreaField, \
     PasswordField, SubmitField, ValidationError
 from wtforms.validators import DataRequired
-
+from enum import Enum
 from app.models.user import User
+
+class ArticleType(Enum):
+
+    normal = 'normal'
+    breaking = 'breaking'
+    top = 'top'
 
 class LoginForm(FlaskForm):
 
@@ -31,5 +37,18 @@ class CreateArticleForm(FlaskForm):
 
     title = StringField('Title', validators=[DataRequired()], render_kw={"placeholder": "Title"})
     description = TextAreaField('Description', validators=[DataRequired()], render_kw={"placeholder": "Description"})
+    article_type = SelectField('Article Type', 
+                               choices=[(article_type.name, article_type.value) 
+                                        for article_type in ArticleType], coerce=str)
     published = BooleanField('Published?')
     submit = SubmitField('Create Article', render_kw={"class": "button"})
+
+class EditArticleForm(FlaskForm):
+
+    title = StringField('Title', validators=[DataRequired()], render_kw={"placeholder": "Title"})
+    description = TextAreaField('Description', validators=[DataRequired()], render_kw={"placeholder": "Description"})
+    article_type = SelectField('Article Type', 
+                               choices=[(article_type.name, article_type.value) 
+                                        for article_type in ArticleType], coerce=str)
+    published = BooleanField('Published?')
+    submit = SubmitField('Update Article', render_kw={"class": "button"})

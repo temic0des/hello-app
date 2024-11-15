@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: f764d21e4987
+Revision ID: 64698b6acbf2
 Revises: 
-Create Date: 2024-11-14 20:15:49.262520
+Create Date: 2024-11-14 21:10:26.805049
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f764d21e4987'
+revision = '64698b6acbf2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,22 +33,13 @@ def upgrade():
     with op.batch_alter_table('tags', schema=None) as batch_op:
         batch_op.create_index(batch_op.f('ix_tags_name'), ['name'], unique=True)
 
-    op.create_table('users',
-    sa.Column('id', sa.String(), nullable=False),
-    sa.Column('email', sa.String(length=255), nullable=False),
-    sa.Column('password', sa.String(length=256), nullable=True),
-    sa.Column('date_created', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
-    sa.PrimaryKeyConstraint('id')
-    )
-    with op.batch_alter_table('users', schema=None) as batch_op:
-        batch_op.create_index(batch_op.f('ix_users_email'), ['email'], unique=True)
-
     op.create_table('articles',
     sa.Column('id', sa.String(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('description', sa.Text(), nullable=False),
     sa.Column('image_url', sa.String(length=255), nullable=True),
     sa.Column('is_published', sa.Boolean(), nullable=False),
+    sa.Column('article_type', sa.Enum('normal', 'breaking', 'top', name='article_type'), server_default='normal', nullable=False),
     sa.Column('date_published', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.Column('date_updated', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.Column('source_id', sa.String(), nullable=False),
@@ -81,10 +72,6 @@ def downgrade():
         batch_op.drop_index(batch_op.f('ix_articles_source_id'))
 
     op.drop_table('articles')
-    with op.batch_alter_table('users', schema=None) as batch_op:
-        batch_op.drop_index(batch_op.f('ix_users_email'))
-
-    op.drop_table('users')
     with op.batch_alter_table('tags', schema=None) as batch_op:
         batch_op.drop_index(batch_op.f('ix_tags_name'))
 

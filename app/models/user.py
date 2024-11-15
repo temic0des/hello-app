@@ -12,7 +12,7 @@ from app.models.article import Article
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
-    id = Column(String, primary_key=True, default=str(uuid4))
+    id = Column(String, primary_key=True, default=str(uuid4()))
     email: so.Mapped[str] = so.mapped_column(String(255), index=True, unique=True)
     password: so.Mapped[Optional[str]] = so.mapped_column(String(256))
     date_created: so.Mapped[datetime] = so.mapped_column(DateTime(timezone=True), server_default=func.now())

@@ -14,7 +14,7 @@ ArticleType = Literal["normal", "breaking", "top"]
 
 class Tag(db.Model):
     __tablename__ = "tags"
-    id = Column(String, primary_key=True, default=str(uuid4()))
+    id = Column(String, primary_key=True, default=lambda: str(uuid4()))
     name: so.Mapped[str] = so.mapped_column(String(255), unique=True, index=True)
     articles: so.WriteOnlyMapped["Article"] = so.relationship(
         secondary="article_tag", back_populates="tags"
@@ -34,7 +34,7 @@ article_tag = Table(
 
 class Article(db.Model):
     __tablename__ = "articles"
-    id = Column(String, primary_key=True, default=str(uuid4()))
+    id = Column(String, primary_key=True, default=lambda: str(uuid4()))
     title: so.Mapped[str] = so.mapped_column(
         String(255), unique=True, index=True, nullable=False
     )
@@ -77,7 +77,7 @@ class Article(db.Model):
 class ArticleSource(db.Model):
 
     __tablename__ = "article_sources"
-    id = Column(String, primary_key=True, default=str(uuid4()))
+    id = Column(String, primary_key=True, default=lambda: str(uuid4()))
     name: so.Mapped[str] = so.mapped_column(String(255), unique=True)
     link: so.Mapped[str] = so.mapped_column(String, nullable=True)
     sources: so.WriteOnlyMapped[Article] = so.relationship(back_populates="source")

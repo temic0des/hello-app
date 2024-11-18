@@ -42,7 +42,6 @@ class Article(db.Model):
         String(255),
         unique=True,
         index=True,
-        nullable=False,
     )
     description: so.Mapped[str] = so.mapped_column(Text, nullable=False)
     image_url: so.Mapped[str] = so.mapped_column(String(255), nullable=True)

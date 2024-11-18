@@ -94,9 +94,11 @@ def dashboard():
 def create_article():
 	form = CreateArticleForm()
 	if form.validate_on_submit():
-		article = Article(title=form.title.data, 
+		print(form.description.data)
+		article = Article(title=form.title.data,
 					description=form.description.data, 
 					is_published=form.published.data, 
+					slug=slugify(form.title.data),
 					article_type=form.article_type.data,
 					author=current_user, image_url='')
 		db.session.add(article)
